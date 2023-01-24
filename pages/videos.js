@@ -1,20 +1,16 @@
-import SEO from 'components/seo';
 import { getVideos } from 'lib/api';
 import VideoCategory from 'components/video-library/videoCategory';
 import sortVideosIntoCategories from 'utils/sortVideosIntoCategories';
+import Layout from 'components/layout';
 
 export default function Videos({ videoData }) {
   const sortedCategories = sortVideosIntoCategories(videoData);
   return (
-    <>
-      <SEO />
-      <main>
-        <h1>Pashion Pilates</h1>
-        {sortedCategories.map(categoryData => (
-          <VideoCategory key={categoryData.category} {...categoryData} />
-        ))}
-      </main>
-    </>
+    <Layout>
+      {sortedCategories.map(categoryData => (
+        <VideoCategory key={categoryData.category} {...categoryData} />
+      ))}
+    </Layout>
   );
 }
 
