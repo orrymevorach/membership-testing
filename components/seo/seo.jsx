@@ -1,6 +1,13 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 export default function SEO() {
+  useEffect(() => {
+    var script = document.createElement('script');
+    script.src = 'https://cdn.memberspace.com/scripts/widgets.js';
+    var element = document.getElementsByTagName('script')[0];
+    element.parentNode.insertBefore(script, element);
+  }, []);
   return (
     <Head>
       <title>Welcome to Pashion Pilates</title>
