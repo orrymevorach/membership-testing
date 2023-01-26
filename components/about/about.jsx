@@ -1,8 +1,8 @@
 import styles from './about.module.scss';
 export default function About() {
   return (
-    <div>
-      <h2>About</h2>
-    </div>
+    <section id="about">
+      <h2>About Section</h2>
+    </section>
   );
 }

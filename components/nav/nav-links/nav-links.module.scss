@@ -1,0 +1,22 @@
+@import '@variables';
+
+.menuItem {
+  a {
+    color: $black;
+    text-decoration: none;
+    padding: 0 16px;
+    // font-family: $fontPrimaryBold;
+  }
+  &.isMobile {
+    color: $white;
+    padding: 5px;
+    a {
+      color: $white;
+      // font-family: $fontPrimary;
+    }
+  }
+
+  &.isActive a {
+    // color: $pink;
+  }
+}

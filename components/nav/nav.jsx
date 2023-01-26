@@ -1,27 +1,37 @@
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useWindowSize, useStopScroll } from 'hooks';
+import DesktopNav from './desktop-nav';
+import MobileNav from './mobile-nav';
+import MobileMenu from './mobile-menu';
 
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Videos', href: '/videos' },
-];
+export default function Nav({ navData, logo }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [pathname, setPathname] = useState('');
+  const { isMobile } = useWindowSize();
 
-export default function Nav() {
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  useStopScroll({ isOpen });
+
   return (
-    <nav>
-      <ul>
-        <li>Logo</li>
-        {navItems.map(({ label, href }) => (
-          <li key={label}>
-            <Link href={href}>{label}</Link>
-          </li>
-        ))}
-        <li>
-          <button>Sign</button>
-        </li>
-        <li>
-          <button>Join Now</button>
-        </li>
-      </ul>
-    </nav>
+    <>
+      {!isMobile ? (
+        <DesktopNav navData={navData} pathname={pathname} logo={logo} />
+      ) : (
+        <>
+          <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} logo={logo} />
+          {isOpen && (
+            <MobileNav
+              navData={navData}
+              pathname={pathname}
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+            />
+          )}
+        </>
+      )}
+    </>
   );
 }

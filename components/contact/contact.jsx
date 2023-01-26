@@ -1,8 +1,8 @@
 import styles from './contact.module.scss';
 export default function Contact() {
   return (
-    <div>
+    <section id="contact">
       <h2>Contact</h2>
-    </div>
+    </section>
   );
 }
